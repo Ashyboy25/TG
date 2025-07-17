@@ -1,0 +1,54 @@
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["glib", "gtk3", "atk", "pango", "cairo", "gdk-pixbuf", "nspr", "nss", "cups", "mesa", "libxkbcommon", "alsa-lib"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Telegram OTP Bot"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "telegram_otp_bot"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Render Test"
+
+[[workflows.workflow]]
+name = "Telegram OTP Bot"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx puppeteer browsers install chrome && node index.js"
+
+[[workflows.workflow]]
+name = "telegram_otp_bot"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install puppeteer axios moment-timezone dotenv && node index.js"
+
+[[workflows.workflow]]
+name = "Render Test"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx puppeteer browsers install chrome && RENDER_HOSTING=true PORT=10000 node render-start.js"
+waitForPort = 10000
+
+[[ports]]
+localPort = 10000
+externalPort = 80

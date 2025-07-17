@@ -1,0 +1,33 @@
+{
+  "name": "telegram-otp-bot",
+  "description": "Telegram OTP Bot for ivasms.com monitoring",
+  "keywords": ["telegram", "bot", "otp", "sms", "monitoring"],
+  "website": "https://github.com/your-username/telegram-otp-bot",
+  "repository": "https://github.com/your-username/telegram-otp-bot",
+  "logo": "https://example.com/logo.png",
+  "success_url": "/",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "EMAIL": {
+      "description": "ivasms.com login email",
+      "required": true
+    },
+    "PASSWORD": {
+      "description": "ivasms.com login password",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Telegram bot token",
+      "required": true
+    },
+    "CHAT_ID": {
+      "description": "Telegram chat ID",
+      "required": true
+    }
+  }
+}
